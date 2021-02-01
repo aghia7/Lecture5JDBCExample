@@ -13,7 +13,7 @@ public class UserController {
     }
 
     public String createUser(String name, String surname, String gender) {
-        boolean male = (gender.toLowerCase() == "male");
+        boolean male = (gender.toLowerCase().equals("male"));
         User user = new User(name, surname, male);
 
         boolean created = repo.createUser(user);
