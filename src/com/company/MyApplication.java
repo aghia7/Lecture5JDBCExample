@@ -38,6 +38,7 @@ public class MyApplication {
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
+                scanner.next(); // to ignore incorrect input
             }
 
             System.out.println("*************************");
