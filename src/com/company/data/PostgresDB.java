@@ -18,7 +18,7 @@ public class PostgresDB implements IDB {
             return con;
         } catch (Exception e) {
             System.out.println(e);
-            throw e;
+            return null;
         }
     }
 }

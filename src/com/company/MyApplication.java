@@ -3,6 +3,7 @@ package com.company;
 import com.company.controllers.UserController;
 import com.company.repositories.interfaces.IUserRepository;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MyApplication {
@@ -36,9 +37,12 @@ public class MyApplication {
                 } else {
                     break;
                 }
-            } catch (Exception e) {
+            } catch (InputMismatchException _) {
+                System.out.println("Input must be integer");
+                scanner.nextLine(); // to ignore incorrect input
+            }
+            catch (Exception e) {
                 System.out.println(e.getMessage());
-                scanner.next(); // to ignore incorrect input
             }
 
             System.out.println("*************************");
