@@ -5,7 +5,6 @@ import com.company.entities.User;
 import com.company.repositories.interfaces.IUserRepository;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,8 +27,8 @@ public class UserRepository implements IUserRepository {
             st.setString(2, user.getSurname());
             st.setBoolean(3, user.getGender());
 
-            boolean executed = st.execute();
-            return executed;
+            st.execute();
+            return true;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {

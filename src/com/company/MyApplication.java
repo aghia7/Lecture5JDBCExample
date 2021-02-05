@@ -1,7 +1,6 @@
 package com.company;
 
 import com.company.controllers.UserController;
-import com.company.repositories.interfaces.IUserRepository;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -10,8 +9,8 @@ public class MyApplication {
     private final UserController controller;
     private final Scanner scanner;
 
-    public MyApplication(IUserRepository userRepository) {
-        controller = new UserController(userRepository);
+    public MyApplication(UserController controller) {
+        this.controller = controller;
         scanner = new Scanner(System.in);
     }
 
