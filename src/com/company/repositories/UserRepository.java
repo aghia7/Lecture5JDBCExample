@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class UserRepository implements IUserRepository {
-    private final IDB db;
+    private final IDB db;  // Dependency Injection
 
     public UserRepository(IDB db) {
         this.db = db;
@@ -18,6 +18,7 @@ public class UserRepository implements IUserRepository {
     @Override
     public boolean createUser(User user) {
         Connection con = null;
+
         try {
             con = db.getConnection();
             String sql = "INSERT INTO users(name,surname,gender) VALUES (?,?,?)";
@@ -28,24 +29,26 @@ public class UserRepository implements IUserRepository {
             st.setBoolean(3, user.getGender());
 
             st.execute();
+
             return true;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("sql error: " + e.getMessage());
         } finally {
             try {
-                con.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                System.out.println("sql error: " + e.getMessage());
             }
         }
+
         return false;
     }
 
     @Override
     public User getUser(int id) {
         Connection con = null;
+
         try {
             con = db.getConnection();
             String sql = "SELECT id,name,surname,gender FROM users WHERE id=?";
@@ -55,30 +58,29 @@ public class UserRepository implements IUserRepository {
 
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                User user = new User(rs.getInt("id"),
+                return new User(rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("surname"),
                         rs.getBoolean("gender"));
-
-                return user;
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("sql error: " + e.getMessage());
         } finally {
             try {
-                con.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                System.out.println("sql error: " + e.getMessage());
             }
         }
+
         return null;
     }
 
     @Override
     public List<User> getAllUsers() {
         Connection con = null;
+
         try {
             con = db.getConnection();
             String sql = "SELECT id,name,surname,gender FROM users";
@@ -96,17 +98,17 @@ public class UserRepository implements IUserRepository {
             }
 
             return users;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("sql error: " + e.getMessage());
         } finally {
             try {
-                con.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                System.out.println("sql error: " + e.getMessage());
             }
         }
+
         return null;
     }
 }

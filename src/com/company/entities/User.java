@@ -17,10 +17,8 @@ public class User {
     }
 
     public User(int id, String name, String surname, boolean gender) {
+        this(name, surname, gender);
         setId(id);
-        setName(name);
-        setSurname(surname);
-        setGender(gender);
     }
 
     public int getId() {

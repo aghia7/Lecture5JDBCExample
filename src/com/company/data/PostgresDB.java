@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class PostgresDB implements IDB {
     @Override
-    public Connection getConnection() throws SQLException, ClassNotFoundException {
+    public Connection getConnection() {
         String connectionUrl = "jdbc:postgresql://localhost:5432/simpledb";
         try {
             // Here we load the driver’s class file into memory at the runtime
@@ -17,7 +17,8 @@ public class PostgresDB implements IDB {
 
             return con;
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("failed to connect to postgres: " + e.getMessage());
+
             return null;
         }
     }
