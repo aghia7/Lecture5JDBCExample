@@ -1,6 +1,6 @@
 package com.company.controllers;
 
-import com.company.entities.User;
+import com.company.models.User;
 import com.company.repositories.interfaces.IUserRepository;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public class UserController {
     }
 
     public String createUser(String name, String surname, String gender) {
-        boolean male = (gender.toLowerCase().equals("male"));
+        boolean male = gender.toLowerCase().equals("male");
         User user = new User(name, surname, male);
 
         boolean created = repo.createUser(user);
@@ -30,6 +30,11 @@ public class UserController {
     public String getAllUsers() {
         List<User> users = repo.getAllUsers();
 
-        return users.toString();
+        StringBuilder response = new StringBuilder();
+        for (User user : users) {
+            response.append(user.toString()).append("\n");
+        }
+
+        return response.toString();
     }
 }

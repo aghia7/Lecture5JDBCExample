@@ -37,7 +37,7 @@ public class MyApplication {
                     break;
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Input must be integer: " + e.getMessage());
+                System.out.println("Input must be integer: " + e);
                 scanner.nextLine(); // to ignore incorrect input
             }
             catch (Exception e) {

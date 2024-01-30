@@ -1,4 +1,4 @@
-package com.company.entities;
+package com.company.models;
 
 public class User {
     private int id;
