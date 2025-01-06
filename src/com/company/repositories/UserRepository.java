@@ -33,13 +33,6 @@ public class UserRepository implements IUserRepository {
             return true;
         } catch (SQLException e) {
             System.out.println("sql error: " + e.getMessage());
-        } finally {
-            try {
-                if (con != null)
-                    con.close();
-            } catch (SQLException e) {
-                System.out.println("sql error: " + e.getMessage());
-            }
         }
 
         return false;
@@ -65,13 +58,6 @@ public class UserRepository implements IUserRepository {
             }
         } catch (SQLException e) {
             System.out.println("sql error: " + e.getMessage());
-        } finally {
-            try {
-                if (con != null)
-                    con.close();
-            } catch (SQLException e) {
-                System.out.println("sql error: " + e.getMessage());
-            }
         }
 
         return null;
@@ -100,13 +86,6 @@ public class UserRepository implements IUserRepository {
             return users;
         } catch (SQLException e) {
             System.out.println("sql error: " + e.getMessage());
-        } finally {
-            try {
-                if (con != null)
-                    con.close();
-            } catch (SQLException e) {
-                System.out.println("sql error: " + e.getMessage());
-            }
         }
 
         return null;

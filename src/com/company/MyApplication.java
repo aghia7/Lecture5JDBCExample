@@ -1,40 +1,42 @@
 package com.company;
 
-import com.company.controllers.UserController;
+import com.company.controllers.interfaces.IUserController;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MyApplication {
-    private final UserController controller;
+    private final IUserController controller;
     private final Scanner scanner;
 
-    public MyApplication(UserController controller) {
+    public MyApplication(IUserController controller) {
         this.controller = controller;
         scanner = new Scanner(System.in);
     }
 
+    private void mainMenu() {
+        System.out.println();
+        System.out.println("Welcome to My Application");
+        System.out.println("Select option:");
+        System.out.println("1. Get all users");
+        System.out.println("2. Get user by id");
+        System.out.println("3. Create user");
+        System.out.println("0. Exit");
+        System.out.println();
+        System.out.print("Enter option (1-3): ");
+    }
+
     public void start() {
         while (true) {
-            System.out.println();
-            System.out.println("Welcome to My Application");
-            System.out.println("Select option:");
-            System.out.println("1. Get all users");
-            System.out.println("2. Get user by id");
-            System.out.println("3. Create user");
-            System.out.println("0. Exit");
-            System.out.println();
+            mainMenu();
             try {
-                System.out.print("Enter option (1-3): ");
                 int option = scanner.nextInt();
-                if (option == 1) {
-                    getAllUsersMenu();
-                } else if (option == 2) {
-                    getUserByIdMenu();
-                } else if (option == 3) {
-                    createUserMenu();
-                } else {
-                    break;
+
+                switch (option) {
+                    case 1: getAllUsersMenu(); break;
+                    case 2: getUserByIdMenu(); break;
+                    case 3: createUserMenu(); break;
+                    default: return;
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Input must be integer: " + e);
