@@ -59,6 +59,7 @@ public class MyApplication {
         System.out.println("Please enter id");
 
         int id = scanner.nextInt();
+
         String response = controller.getUser(id);
         System.out.println(response);
     }

@@ -7,8 +7,6 @@ import com.company.data.interfaces.IDB;
 import com.company.repositories.UserRepository;
 import com.company.repositories.interfaces.IUserRepository;
 
-import java.sql.*;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -18,6 +16,8 @@ public class Main {
         IUserRepository repo = new UserRepository(db);
         IUserController controller = new UserController(repo);
         MyApplication app = new MyApplication(controller);
+
+
         app.start();
 
         db.close();
