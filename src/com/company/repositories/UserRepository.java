@@ -5,7 +5,7 @@ import com.company.models.User;
 import com.company.repositories.interfaces.IUserRepository;
 
 import java.sql.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository implements IUserRepository {
@@ -73,7 +73,7 @@ public class UserRepository implements IUserRepository {
             Statement st = con.createStatement();
 
             ResultSet rs = st.executeQuery(sql);
-            List<User> users = new LinkedList<>();
+            List<User> users = new ArrayList<>();
             while (rs.next()) {
                 User user = new User(rs.getInt("id"),
                         rs.getString("name"),

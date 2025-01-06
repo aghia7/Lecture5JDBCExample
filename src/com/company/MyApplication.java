@@ -7,11 +7,10 @@ import java.util.Scanner;
 
 public class MyApplication {
     private final IUserController controller;
-    private final Scanner scanner;
+    private final Scanner scanner = new Scanner(System.in);
 
     public MyApplication(IUserController controller) {
         this.controller = controller;
-        scanner = new Scanner(System.in);
     }
 
     private void mainMenu() {
@@ -41,8 +40,7 @@ public class MyApplication {
             } catch (InputMismatchException e) {
                 System.out.println("Input must be integer: " + e);
                 scanner.nextLine(); // to ignore incorrect input
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
 
