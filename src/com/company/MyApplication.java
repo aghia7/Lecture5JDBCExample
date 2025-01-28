@@ -6,8 +6,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MyApplication {
-    private final IUserController controller;
     private final Scanner scanner = new Scanner(System.in);
+
+    private final IUserController controller;
 
     public MyApplication(IUserController controller) {
         this.controller = controller;

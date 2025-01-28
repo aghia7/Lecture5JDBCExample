@@ -15,8 +15,8 @@ public class Main {
         IDB db = new PostgresDB("jdbc:postgresql://localhost:5432", "postgres", "0000", "somedb");
         IUserRepository repo = new UserRepository(db);
         IUserController controller = new UserController(repo);
-        MyApplication app = new MyApplication(controller);
 
+        MyApplication app = new MyApplication(controller);
 
         app.start();
 
